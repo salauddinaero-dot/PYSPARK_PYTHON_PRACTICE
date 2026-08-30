@@ -7,7 +7,7 @@ def SPARK(app_name):
     return spark
 
 
-def JDBC_MYSQL(DATABASE,TABLE):
+def JDBC_read(DATABASE,TABLE):
     spark = SparkSession.builder.getOrCreate()
 
     mysql_url = f"jdbc:mysql://localhost:3306/{DATABASE}"
@@ -25,6 +25,25 @@ def JDBC_MYSQL(DATABASE,TABLE):
         .option("driver",MYSQL_DRIVER)
         .load())
     return df
+
+def JDBC_write(DATABASE,TABLE,df):
+    spark = SparkSession.builder.getOrCreate()
+
+    mysql_url = f"jdbc:mysql://localhost:3306/{DATABASE}"
+    MYSQL_USER = "root"
+    MYSQL_PASSWORD = "mysqlpass"
+    MYSQL_TABLE = f"{TABLE}"
+    MYSQL_DRIVER = "com.mysql.cj.jdbc.Driver"
+
+
+    (df.write.format("JDBC")
+        .option("url",mysql_url)
+        .option("user",MYSQL_USER)
+        .option("password",MYSQL_PASSWORD)
+        .option("dbtable",MYSQL_TABLE)
+        .option("driver",MYSQL_DRIVER).mode("append")
+        .save())
+    return print("saved to database")
 
 
 
