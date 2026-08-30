@@ -30,6 +30,23 @@ def main():
 
     #QUESTION/REQUIREMENT
     #FINDOUT the TOTAL MATCHES PLAYED AND WON BY EACH TEAM
+    # dataset
+    # data = [
+    #     ("India", "Australia", "India"),
+    #     ("England", "Pakistan", "England"),
+    #     ("South Africa", "New Zealand", "New Zealand"),
+    #     ("West Indies", "Sri Lanka", "Sri Lanka"),
+    #     ("India", "Pakistan", "India"),
+    #     ("Australia", "England", "Australia"),
+    #     ("New Zealand", "Sri Lanka", "New Zealand"),
+    #     ("South Africa", "West Indies", "South Africa"),
+    #     ("India", "England", "India"),
+    #     ("Pakistan", "Australia", "Pakistan"),
+    # ]
+    #
+    # columns = ["Team_1", "Team_2", "Winner"]
+    #
+    # df = spark.createDataFrame(data, columns)
 
     #READ THE DATASET FROM MYSQL
     df=imp.JDBC_read("practice","team_matches")
