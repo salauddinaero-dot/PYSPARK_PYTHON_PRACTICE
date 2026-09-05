@@ -2,6 +2,7 @@ import os
 import sys
 from threading import activeCount
 
+from py4j.java_gateway import null_handler
 from pyspark.sql.functions import concat_ws
 
 # Tell Spark to use the same Python interpreter as the driver
@@ -29,5 +30,31 @@ def main():
              .appName("SCENARIO_3")
              .getOrCreate())
 
-    REQUIREMENT:
+    # REQUIREMENT:
+    # create a dataframe with a file in databricks community edition
+    #
+    # concat the fname and l name and make it as full name
+    #
+    # create new column if pin is 1111
+    #
+    # update address as unknown if null
+
+    df=(spark.read.format("csv").option("header","true")
+     .load("file:///C:/BIGDATA_PRACTICE/GIT_LAB/PYSPARK/PYSPARK_PACKAGE/SCENARIO_6_input.csv"))
+    df.show()
+
+    df2=(df.withColumn("FULL_NAME",concat_ws(" ",col("first_name"),col("last_name")))
+         .withColumn("new_address",when(col("pin")==1111,col("address")).otherwise("unknown"))
+         .withColumn("address" ,when(col("address").isNull(),"UNKNOWN").otherwise(col("address")))
+    ).select("FULL_NAME", "pin", "address", "new_address")
+
+    df2.show()
+
+
+
+
+
+if __name__=="__main__":
+    main()
+
 
