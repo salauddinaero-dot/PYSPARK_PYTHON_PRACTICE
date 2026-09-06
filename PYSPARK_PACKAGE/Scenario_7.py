@@ -48,13 +48,13 @@ def main():
 #     +--------+--------+--------+
 #
 #     required Output
-#     #Team Name	Matches Played	No. of Wins	  No. of Losses
-# India	           4	          4	         0
-# SL			       4              1          3
-# SA			       3              1          2
-# Eng			       4              1          3
-# Aus			       2              1          1
-# NZ			       1              1          0
+# Team Name	Matches Played	No. of Wins	  No. of Losses
+# India	          4	             4	         0
+# SL			  4              1           3
+# SA			  3              1           2
+# Eng			  4              1           3
+# Aus	          2              1           1
+# NZ   	          1              1           0
 
 
     #read data from mysql
